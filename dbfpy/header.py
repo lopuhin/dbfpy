@@ -19,7 +19,10 @@ __date__ = "$Date: 2010/09/16 05:06:39 $"[7:-2]
 
 __all__ = ["DbfHeader"]
 
-import cStringIO
+try:
+    import cStringIO
+except ImportError:
+    from io import StringIO
 import datetime
 import struct
 import time

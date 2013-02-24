@@ -34,7 +34,7 @@ import datetime
 import struct
 import sys
 
-import utils
+from . import utils
 
 ## abstract definitions
 

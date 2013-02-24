@@ -159,7 +159,7 @@ class _InvalidValue(object):
         return ""
 
     def __unicode__(self):
-        return u""
+        return ""
 
     def __repr__(self):
         return "<INVALID>"
