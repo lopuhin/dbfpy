@@ -235,8 +235,8 @@ Version (signature): 0x%02x
         """Encode and write header to the stream."""
         stream.seek(0)
         stream.write(self.toString())
-        stream.write("".join([_fld.toString() for _fld in self.fields]))
-        stream.write(chr(0x0D))   # cr at end of all hdr data
+        stream.write(b"".join([_fld.toString() for _fld in self.fields]))
+        stream.write(b'\x0D')   # cr at end of all hdr data
         self.changed = False
 
     def toString(self):
@@ -248,7 +248,7 @@ Version (signature): 0x%02x
             self.day,
             self.recordCount,
             self.headerLength,
-            self.recordLength) + "\0" * 20
+            self.recordLength) + b"\0" * 20
 
     def setCurrentDate(self):
         """Update ``self.lastUpdate`` field with current date value."""

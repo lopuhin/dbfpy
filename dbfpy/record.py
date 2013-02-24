@@ -24,6 +24,7 @@ import six
 
 import utils
 
+
 class DbfRecord(object):
     """DBF record.
 
@@ -180,7 +181,7 @@ class DbfRecord(object):
         if self.index == len(self.dbf):
             # this is the last record,
             # we should write SUB (ASCII 26)
-            self.dbf.stream.write("\x1A")
+            self.dbf.stream.write(b"\x1A")
 
     ## utility methods
 
@@ -225,7 +226,7 @@ class DbfRecord(object):
         return "".join([" *"[self.deleted]] + [
             _def.encodeValue(_dat)
             for (_def, _dat) in zip(self.dbf.header.fields, self.fieldData)
-        ])
+        ]).encode(utils.ENCODING)
 
     def asList(self):
         """Return a flat list of fields.

@@ -19,6 +19,9 @@ import time
 import six
 
 
+ENCODING = 'latin1' # FIXME
+
+
 def unzfill(str):
     """Return a string without ASCII NULs.
 
@@ -149,6 +152,8 @@ class _InvalidValue(object):
 
     def __nonzero__(self):
         return False
+
+    __bool__ = __nonzero__
 
     def __int__(self):
         return 0

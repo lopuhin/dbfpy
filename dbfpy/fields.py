@@ -148,7 +148,7 @@ class DbfFieldDef(object):
             chr(self.length) +
             chr(self.decimalCount) +
             chr(0) * 14
-        )
+        ).encode(utils.ENCODING)
 
     def __repr__(self):
         return "%-10s %1s %3d %3d" % self.fieldInfo()
