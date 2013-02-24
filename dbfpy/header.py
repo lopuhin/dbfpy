@@ -27,6 +27,8 @@ import datetime
 import struct
 import time
 
+import six
+
 import fields
 from utils import getDate
 
@@ -128,7 +130,8 @@ class DbfHeader(object):
         _data = stream.read(1)
         while _data[0] != "\x0D":
             _data += stream.read(31)
-            _fld = fields.lookupFor(_data[11]).fromString(_data, _pos)
+            c = chr(_data[11]) if six.PY3 else _data[11]
+            _fld = fields.lookupFor(c).fromString(_data, _pos)
             _obj._addField(_fld)
             _pos = _fld.end
             _data = stream.read(1)
