@@ -62,6 +62,8 @@ __author__ = "Jeff Kunce <kuncej@mail.conservation.state.mo.us>"
 
 __all__ = ["Dbf"]
 
+import six
+
 import header
 import record
 from utils import INVALID_VALUE
@@ -113,16 +115,16 @@ class Dbf(object):
                 ``INVALID_VALUE`` instead of raising conversion error.
 
         """
-        if isinstance(f, basestring):
+        if isinstance(f, six.string_types):
             # a filename
             self.name = f
             if new:
                 # new table (table file must be
                 # created or opened and truncated)
-                self.stream = file(f, "w+b")
+                self.stream = open(f, "w+b")
             else:
                 # tabe file must exist
-                self.stream = file(f, ("r+b", "rb")[bool(readOnly)])
+                self.stream = open(f, ("r+b", "rb")[bool(readOnly)])
         else:
             # a stream
             self.name = getattr(f, "name", "")

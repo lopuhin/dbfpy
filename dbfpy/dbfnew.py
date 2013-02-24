@@ -139,7 +139,7 @@ class dbf_new(object):
         _dbfh.setCurrentDate()
         for _fldDef in self.fields:
             _fldDef.appendToHeader(_dbfh)
-        _dbfStream = file(filename, "wb")
+        _dbfStream = open(filename, "wb")
         _dbfh.write(_dbfStream)
         _dbfStream.close()
 
