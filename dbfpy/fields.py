@@ -102,8 +102,8 @@ class DbfFieldDef(object):
         self.start = start
         self.end = stop
 
-    def __cmp__(self, other):
-        return cmp(self.name, str(other).upper())
+    def __eq__(self, other):
+        return self.name == other.upper()
 
     def __hash__(self):
         return hash(self.name)
