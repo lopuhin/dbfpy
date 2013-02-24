@@ -128,7 +128,7 @@ class DbfHeader(object):
         # position 0 is for the deletion flag
         _pos = 1
         _data = stream.read(1)
-        while _data[0] != "\x0D":
+        while (chr(_data[0]) if six.PY3 else _data[0]) != "\x0D":
             _data += stream.read(31)
             c = chr(_data[11]) if six.PY3 else _data[11]
             _fld = fields.lookupFor(c).fromString(_data, _pos)

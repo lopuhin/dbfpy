@@ -112,7 +112,7 @@ def getDateTime(value=None):
         return value
     if isinstance(value, datetime.date):
         return datetime.datetime.fromordinal(value.toordinal())
-    if isinstance(value, (int, long, float)):
+    if isinstance(value, (six.integer_types, float)):
         # value is a timestamp
         return datetime.datetime.fromtimestamp(value)
     if isinstance(value, basestring):

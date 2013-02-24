@@ -177,7 +177,7 @@ class Dbf(object):
             Return value is numeric object maning valid index.
 
         """
-        if not isinstance(index, (int, long)):
+        if not isinstance(index, six.integer_types):
             raise TypeError("Index must be a numeric object")
         if index < 0:
             # index from the right side
