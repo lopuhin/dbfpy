@@ -56,8 +56,7 @@ class DbfFieldDef(object):
 
     """
 
-    __slots__ = ("name", "length", "decimalCount",
-        "start", "end", "ignoreErrors")
+    __slots__ = ("name", "decimalCount", "start", "end", "ignoreErrors")
 
     # length of the field, None in case of variable-length field,
     # or a number if this field is a fixed-length field
