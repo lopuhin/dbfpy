@@ -109,9 +109,10 @@ class DbfHeader(object):
         """Return header object from the stream."""
         stream.seek(0)
         _data = stream.read(32)
+        _data_array = bytearray(_data)
         (_cnt, _hdrLen, _recLen) = struct.unpack("<I2H", _data[4:12])
         #reserved = _data[12:32]
-        _year = ord(_data[1])
+        _year = _data_array[1]
         if _year < 80:
             # dBase II started at 1980.  It is quite unlikely
             # that actual last update date is before that year.
@@ -119,8 +120,8 @@ class DbfHeader(object):
         else:
             _year += 1900
         ## create header object
-        _obj = cls(None, _hdrLen, _recLen, _cnt, ord(_data[0]),
-            (_year, ord(_data[2]), ord(_data[3])))
+        _obj = cls(None, _hdrLen, _recLen, _cnt, _data_array[0],
+            (_year, _data_array[2], _data_array[3]))
         ## append field definitions
         # position 0 is for the deletion flag
         _pos = 1
