@@ -208,11 +208,11 @@ class DbfCharacterFieldDef(DbfFieldDef):
         Return value is a ``value`` argument with stripped right spaces.
 
         """
-        return value.rstrip(" ")
+        return value.decode(utils.ENCODING).rstrip(" ")
 
     def encodeValue(self, value):
         """Return raw data string encoded from a ``value``."""
-        return str(value)[:self.length].ljust(self.length)
+        return value.encode(utils.ENCODING)[:self.length].ljust(self.length)
 
 
 class DbfNumericFieldDef(DbfFieldDef):
