@@ -16,6 +16,8 @@ __date__ = "$Date: 2007/02/11 08:57:17 $"[7:-2]
 import datetime
 import time
 
+import six
+
 
 def unzfill(str):
     """Return a string without ASCII NULs.
@@ -60,10 +62,10 @@ def getDate(date=None):
         return date
     if isinstance(date, datetime.datetime):
         return date.date()
-    if isinstance(date, (int, long, float)):
+    if isinstance(date, (six.integer_types, float)):
         # date is a timestamp
         return datetime.date.fromtimestamp(date)
-    if isinstance(date, basestring):
+    if isinstance(date, six.string_types):
         date = date.replace(" ", "0")
         if len(date) == 6:
             # yymmdd
