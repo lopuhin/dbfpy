@@ -30,7 +30,7 @@ import time
 import six
 
 import fields
-from utils import getDate
+from utils import getDate, to_str
 
 
 class DbfHeader(object):
@@ -128,9 +128,9 @@ class DbfHeader(object):
         # position 0 is for the deletion flag
         _pos = 1
         _data = stream.read(1)
-        while (chr(_data[0]) if six.PY3 else _data[0]) != "\x0D":
+        while to_str(_data[0]) != "\x0D":
             _data += stream.read(31)
-            c = chr(_data[11]) if six.PY3 else _data[11]
+            c = to_str(_data[11])
             _fld = fields.lookupFor(c).fromString(_data, _pos)
             _obj._addField(_fld)
             _pos = _fld.end

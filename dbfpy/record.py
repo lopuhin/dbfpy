@@ -223,10 +223,10 @@ class DbfRecord(object):
 
     def toString(self):
         """Return string packed record values."""
-        return "".join([" *"[self.deleted]] + [
+        return b"".join([utils.to_byte(b" *"[self.deleted])] + [
             _def.encodeValue(_dat)
             for (_def, _dat) in zip(self.dbf.header.fields, self.fieldData)
-        ]).encode(utils.ENCODING)
+        ])
 
     def asList(self):
         """Return a flat list of fields.

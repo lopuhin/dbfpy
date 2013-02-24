@@ -21,6 +21,17 @@ import six
 
 ENCODING = 'latin1' # FIXME
 
+if six.PY3:
+    def to_str(int_):
+        return chr(int_)
+    def to_byte(int_):
+        return bytes([int_])
+else:
+    def to_str(str_):
+        return str_
+    def to_byte(str_):
+        return str_
+
 
 def unzfill(str):
     """Return a string without ASCII NULs.

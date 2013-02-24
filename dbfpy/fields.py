@@ -361,6 +361,7 @@ class DbfDateFieldDef(DbfFieldDef):
 
     def decodeValue(self, value):
         """Return a ``datetime.date`` instance decoded from ``value``."""
+        value = value.decode(utils.ENCODING)
         if value.strip():
             return utils.getDate(value)
         else:
@@ -377,9 +378,9 @@ class DbfDateFieldDef(DbfFieldDef):
 
         """
         if value:
-            return utils.getDate(value).strftime("%Y%m%d")
+            return utils.getDate(value).strftime("%Y%m%d").encode(utils.ENCODING)
         else:
-            return " " * self.length
+            return b" " * self.length
 
 
 class DbfDateTimeFieldDef(DbfFieldDef):
