@@ -121,6 +121,7 @@ class DbfFieldDef(object):
                 initial error processing mode for the new field (boolean)
 
         """
+        string = string.decode(utils.ENCODING)
         assert len(string) == 32
         _length = ord(string[16])
         return cls(utils.unzfill(string)[:11], _length, ord(string[17]),
